@@ -1,23 +1,19 @@
 package com.junyeong.yu.prototype.boot;
 
-import org.springframework.boot.*;
-import org.springframework.boot.autoconfigure.*;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/api")
-public class SampleRestController {
+@Controller
+@RequestMapping("/sample")
+public class SampleController {
 
     @RequestMapping("/")
-    @ResponseBody
-    String index() {
-        return "{name: \"Hello World!\"}";
-    }
-
-    @RequestMapping("/hello")
-    @ResponseBody
-    String hello() {
-        return "{name: \"Hello World!\"}";
+    public String index(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
+        model.addAttribute("name", name);
+        return "sample/index";
     }
 }

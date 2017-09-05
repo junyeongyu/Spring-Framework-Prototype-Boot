@@ -17,21 +17,21 @@ import static org.hamcrest.CoreMatchers.*;
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @SpringBootTest
-public class SampleControllerTests {
+public class SampleRestControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void helloJsonTest() throws Exception {
-        mockMvc.perform(get("/").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/sample/api/").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name", is("Hello World!"))) ;
     }
 
     @Test
     public void helloTextTest() throws Exception {
-        mockMvc.perform(get("/").accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/sample/api/").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("{name: \"Hello World!\"}")));
     }

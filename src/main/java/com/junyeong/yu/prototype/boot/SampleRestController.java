@@ -6,17 +6,12 @@ import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class SampleController {
+@RequestMapping("/sample/api")
+public class SampleRestController {
 
     @RequestMapping("/")
     @ResponseBody
-    String index() {
-        return "{name: \"Hello World!\"}";
-    }
-
-    @RequestMapping("/hello")
-    @ResponseBody
-    String hello() {
+    public String hello() {
         return "{name: \"Hello World!\"}";
     }
 }
